@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CRMStoreContainer" CdmEntityContainer="CRMEntities">
+    <EntitySetMapping Name="Bedrijven">
+      <EntityTypeMapping TypeName="CRM.Bedrijf">
+        <MappingFragment StoreEntitySet="Bedrijven">
+          <ScalarProperty Name="BedrijfId" ColumnName="BedrijfId" />
+          <ScalarProperty Name="KlantCode" ColumnName="KlantCode" />
+          <ScalarProperty Name="Naam" ColumnName="Naam" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
+          <ScalarProperty Name="Land" ColumnName="Land" />
+          <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Categorie_Code" ColumnName="Categorie_Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorieën">
+      <EntityTypeMapping TypeName="CRM.Categorie">
+        <MappingFragment StoreEntitySet="Categorieën">
+          <ScalarProperty Name="CategorieCode" ColumnName="CategorieCode" />
+          <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Opportuniteiten">
+      <EntityTypeMapping TypeName="CRM.Opportuniteit">
+        <MappingFragment StoreEntitySet="Opportuniteiten">
+          <ScalarProperty Name="OpportuniteitId" ColumnName="OpportuniteitId" />
+          <ScalarProperty Name="Persoon_Id" ColumnName="Persoon_Id" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Einddatum" ColumnName="Einddatum" />
+          <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personen">
+      <EntityTypeMapping TypeName="CRM.Persoon">
+        <MappingFragment StoreEntitySet="Personen">
+          <ScalarProperty Name="PersoonId" ColumnName="PersoonId" />
+          <ScalarProperty Name="KlantCode" ColumnName="KlantCode" />
+          <ScalarProperty Name="Aanspreking" ColumnName="Aanspreking" />
+          <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+          <ScalarProperty Name="Familienaam" ColumnName="Familienaam" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
+          <ScalarProperty Name="Land" ColumnName="Land" />
+          <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Categorie_Code" ColumnName="Categorie_Code" />
+          <ScalarProperty Name="Bedrijf_Id" ColumnName="Bedrijf_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producten">
+      <EntityTypeMapping TypeName="CRM.Product">
+        <MappingFragment StoreEntitySet="Producten">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+          <ScalarProperty Name="Eenheid" ColumnName="Eenheid" />
+          <ScalarProperty Name="PrijsPerEenheid" ColumnName="PrijsPerEenheid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VerkoopRegels">
+      <EntityTypeMapping TypeName="CRM.VerkoopRegel">
+        <MappingFragment StoreEntitySet="VerkoopRegels">
+          <ScalarProperty Name="Verkoop_Id" ColumnName="Verkoop_Id" />
+          <ScalarProperty Name="RegelNr" ColumnName="RegelNr" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Aantal" ColumnName="Aantal" />
+          <ScalarProperty Name="Korting" ColumnName="Korting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Verkopen">
+      <EntityTypeMapping TypeName="CRM.Verkoop">
+        <MappingFragment StoreEntitySet="Verkopen">
+          <ScalarProperty Name="VerkoopId" ColumnName="VerkoopId" />
+          <ScalarProperty Name="Persoon_Id" ColumnName="Persoon_Id" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Bevestigd" ColumnName="Bevestigd" />
+          <ScalarProperty Name="Betaald" ColumnName="Betaald" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,29 @@
+﻿@model PROJECT2MVC.Models.Categorie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Categorie</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CategorieCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CategorieCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Omschrijving)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Omschrijving)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategorieCode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

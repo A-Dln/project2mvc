@@ -1,0 +1,33 @@
+﻿@model PROJECT2MVC.Models.Categorie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Categorie</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CategorieCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CategorieCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Omschrijving)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Omschrijving)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

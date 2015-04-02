@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ecfcb14f216426e96642092e2c94eb6" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="CRM.Bedrijf" Width="1.5" PointX="11.375" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM.Categorie" Width="1.5" PointX="10.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM.Opportuniteit" Width="1.5" PointX="9.375" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM.Persoon" Width="1.5" PointX="9.375" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM.Product" Width="1.5" PointX="4.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM.VerkoopRegel" Width="1.5" PointX="6.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM.Verkoop" Width="1.5" PointX="6.5" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="CRM.Bedrijf_Categorie" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM.Persoon_Bedrijf" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM.Persoon_Categorie" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM.FK_Opportuniteiten_Personen" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM.FK_Verkopen_Personen" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM.FK_VerkoopRegels_Producten" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM.FK_VerkoopRegels_Verkopen" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

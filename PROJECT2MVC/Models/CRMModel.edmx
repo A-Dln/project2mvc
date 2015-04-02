@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CRM.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CRMStoreContainer">
+          <EntitySet Name="Bedrijven" EntityType="CRM.Store.Bedrijven" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Categorieën" EntityType="CRM.Store.Categorieën" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Opportuniteiten" EntityType="CRM.Store.Opportuniteiten" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Personen" EntityType="CRM.Store.Personen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Producten" EntityType="CRM.Store.Producten" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VerkoopRegels" EntityType="CRM.Store.VerkoopRegels" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Verkopen" EntityType="CRM.Store.Verkopen" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="Bedrijf_Categorie" Association="CRM.Store.Bedrijf_Categorie">
+            <End Role="Categorieën" EntitySet="Categorieën" />
+            <End Role="Bedrijven" EntitySet="Bedrijven" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opportuniteiten_Personen" Association="CRM.Store.FK_Opportuniteiten_Personen">
+            <End Role="Personen" EntitySet="Personen" />
+            <End Role="Opportuniteiten" EntitySet="Opportuniteiten" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VerkoopRegels_Producten" Association="CRM.Store.FK_VerkoopRegels_Producten">
+            <End Role="Producten" EntitySet="Producten" />
+            <End Role="VerkoopRegels" EntitySet="VerkoopRegels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VerkoopRegels_Verkopen" Association="CRM.Store.FK_VerkoopRegels_Verkopen">
+            <End Role="Verkopen" EntitySet="Verkopen" />
+            <End Role="VerkoopRegels" EntitySet="VerkoopRegels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Verkopen_Personen" Association="CRM.Store.FK_Verkopen_Personen">
+            <End Role="Personen" EntitySet="Personen" />
+            <End Role="Verkopen" EntitySet="Verkopen" />
+          </AssociationSet>
+          <AssociationSet Name="Persoon_Bedrijf" Association="CRM.Store.Persoon_Bedrijf">
+            <End Role="Bedrijven" EntitySet="Bedrijven" />
+            <End Role="Personen" EntitySet="Personen" />
+          </AssociationSet>
+          <AssociationSet Name="Persoon_Categorie" Association="CRM.Store.Persoon_Categorie">
+            <End Role="Categorieën" EntitySet="Categorieën" />
+            <End Role="Personen" EntitySet="Personen" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bedrijven">
+          <Key>
+            <PropertyRef Name="BedrijfId" />
+          </Key>
+          <Property Name="BedrijfId" Type="int" Nullable="false" />
+          <Property Name="KlantCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Naam" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="7" />
+          <Property Name="Gemeente" Type="nvarchar" MaxLength="30" />
+          <Property Name="Land" Type="nvarchar" MaxLength="30" />
+          <Property Name="Telefoon" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+          <Property Name="Website" Type="nvarchar" MaxLength="30" />
+          <Property Name="Categorie_Code" Type="nvarchar" Nullable="false" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Categorieën">
+          <Key>
+            <PropertyRef Name="CategorieCode" />
+          </Key>
+          <Property Name="CategorieCode" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="Omschrijving" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Opportuniteiten">
+          <Key>
+            <PropertyRef Name="OpportuniteitId" />
+          </Key>
+          <Property Name="OpportuniteitId" Type="int" Nullable="false" />
+          <Property Name="Persoon_Id" Type="nchar" MaxLength="10" />
+          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="Einddatum" Type="date" Nullable="false" />
+          <Property Name="Omschrijving" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personen">
+          <Key>
+            <PropertyRef Name="PersoonId" />
+          </Key>
+          <Property Name="PersoonId" Type="int" Nullable="false" />
+          <Property Name="KlantCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Aanspreking" Type="nvarchar" MaxLength="10" />
+          <Property Name="Voornaam" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Familienaam" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="7" />
+          <Property Name="Gemeente" Type="nvarchar" MaxLength="30" />
+          <Property Name="Land" Type="nvarchar" MaxLength="30" />
+          <Property Name="Telefoon" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+          <Property Name="Categorie_Code" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="Bedrijf_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Producten">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Omschrijving" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Eenheid" Type="nvarchar" MaxLength="15" />
+          <Property Name="PrijsPerEenheid" Type="decimal" Nullable="false" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="VerkoopRegels">
+          <Key>
+            <PropertyRef Name="Verkoop_Id" />
+            <PropertyRef Name="RegelNr" />
+          </Key>
+          <Property Name="Verkoop_Id" Type="int" Nullable="false" />
+          <Property Name="RegelNr" Type="int" Nullable="false" />
+          <Property Name="Product_Id" Type="int" Nullable="false" />
+          <Property Name="Aantal" Type="int" Nullable="false" />
+          <Property Name="Korting" Type="decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="Verkopen">
+          <Key>
+            <PropertyRef Name="VerkoopId" />
+          </Key>
+          <Property Name="VerkoopId" Type="int" Nullable="false" />
+          <Property Name="Persoon_Id" Type="int" Nullable="false" />
+          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="Bevestigd" Type="int" Nullable="false" />
+          <Property Name="Betaald" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Bedrijf_Categorie">
+          <End Role="Categorieën" Type="CRM.Store.Categorieën" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bedrijven" Type="CRM.Store.Bedrijven" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorieën">
+              <PropertyRef Name="CategorieCode" />
+            </Principal>
+            <Dependent Role="Bedrijven">
+              <PropertyRef Name="Categorie_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opportuniteiten_Personen">
+          <End Role="Personen" Type="CRM.Store.Personen" Multiplicity="1" />
+          <End Role="Opportuniteiten" Type="CRM.Store.Opportuniteiten" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personen">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="Opportuniteiten">
+              <PropertyRef Name="OpportuniteitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VerkoopRegels_Producten">
+          <End Role="Producten" Type="CRM.Store.Producten" Multiplicity="1" />
+          <End Role="VerkoopRegels" Type="CRM.Store.VerkoopRegels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producten">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="VerkoopRegels">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VerkoopRegels_Verkopen">
+          <End Role="Verkopen" Type="CRM.Store.Verkopen" Multiplicity="1" />
+          <End Role="VerkoopRegels" Type="CRM.Store.VerkoopRegels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Verkopen">
+              <PropertyRef Name="VerkoopId" />
+            </Principal>
+            <Dependent Role="VerkoopRegels">
+              <PropertyRef Name="Verkoop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Verkopen_Personen">
+          <End Role="Personen" Type="CRM.Store.Personen" Multiplicity="1" />
+          <End Role="Verkopen" Type="CRM.Store.Verkopen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personen">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="Verkopen">
+              <PropertyRef Name="Persoon_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Persoon_Bedrijf">
+          <End Role="Bedrijven" Type="CRM.Store.Bedrijven" Multiplicity="0..1" />
+          <End Role="Personen" Type="CRM.Store.Personen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bedrijven">
+              <PropertyRef Name="BedrijfId" />
+            </Principal>
+            <Dependent Role="Personen">
+              <PropertyRef Name="Bedrijf_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Persoon_Categorie">
+          <End Role="Categorieën" Type="CRM.Store.Categorieën" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Personen" Type="CRM.Store.Personen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorieën">
+              <PropertyRef Name="CategorieCode" />
+            </Principal>
+            <Dependent Role="Personen">
+              <PropertyRef Name="Categorie_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CRM" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CRMEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Bedrijven" EntityType="CRM.Bedrijf" />
+          <EntitySet Name="Categorieën" EntityType="CRM.Categorie" />
+          <EntitySet Name="Opportuniteiten" EntityType="CRM.Opportuniteit" />
+          <EntitySet Name="Personen" EntityType="CRM.Persoon" />
+          <EntitySet Name="Producten" EntityType="CRM.Product" />
+          <EntitySet Name="VerkoopRegels" EntityType="CRM.VerkoopRegel" />
+          <EntitySet Name="Verkopen" EntityType="CRM.Verkoop" />
+          <AssociationSet Name="Bedrijf_Categorie" Association="CRM.Bedrijf_Categorie">
+            <End Role="Categorieën" EntitySet="Categorieën" />
+            <End Role="Bedrijven" EntitySet="Bedrijven" />
+          </AssociationSet>
+          <AssociationSet Name="Persoon_Bedrijf" Association="CRM.Persoon_Bedrijf">
+            <End Role="Bedrijven" EntitySet="Bedrijven" />
+            <End Role="Personen" EntitySet="Personen" />
+          </AssociationSet>
+          <AssociationSet Name="Persoon_Categorie" Association="CRM.Persoon_Categorie">
+            <End Role="Categorieën" EntitySet="Categorieën" />
+            <End Role="Personen" EntitySet="Personen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opportuniteiten_Personen" Association="CRM.FK_Opportuniteiten_Personen">
+            <End Role="Personen" EntitySet="Personen" />
+            <End Role="Opportuniteiten" EntitySet="Opportuniteiten" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Verkopen_Personen" Association="CRM.FK_Verkopen_Personen">
+            <End Role="Personen" EntitySet="Personen" />
+            <End Role="Verkopen" EntitySet="Verkopen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VerkoopRegels_Producten" Association="CRM.FK_VerkoopRegels_Producten">
+            <End Role="Producten" EntitySet="Producten" />
+            <End Role="VerkoopRegels" EntitySet="VerkoopRegels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VerkoopRegels_Verkopen" Association="CRM.FK_VerkoopRegels_Verkopen">
+            <End Role="Verkopen" EntitySet="Verkopen" />
+            <End Role="VerkoopRegels" EntitySet="VerkoopRegels" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bedrijf">
+          <Key>
+            <PropertyRef Name="BedrijfId" />
+          </Key>
+          <Property Name="BedrijfId" Type="Int32" Nullable="false" />
+          <Property Name="KlantCode" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Adres" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Postcode" Type="String" MaxLength="7" Unicode="true" FixedLength="false" />
+          <Property Name="Gemeente" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Land" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Telefoon" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Website" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Categorie_Code" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Categorie" Relationship="CRM.Bedrijf_Categorie" FromRole="Bedrijven" ToRole="Categorieën" />
+          <NavigationProperty Name="Personen" Relationship="CRM.Persoon_Bedrijf" FromRole="Bedrijven" ToRole="Personen" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="CategorieCode" />
+          </Key>
+          <Property Name="CategorieCode" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Omschrijving" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Bedrijven" Relationship="CRM.Bedrijf_Categorie" FromRole="Categorieën" ToRole="Bedrijven" />
+          <NavigationProperty Name="Personen" Relationship="CRM.Persoon_Categorie" FromRole="Categorieën" ToRole="Personen" />
+        </EntityType>
+        <EntityType Name="Opportuniteit">
+          <Key>
+            <PropertyRef Name="OpportuniteitId" />
+          </Key>
+          <Property Name="OpportuniteitId" Type="Int32" Nullable="false" />
+          <Property Name="Persoon_Id" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Einddatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Omschrijving" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Persoon" Relationship="CRM.FK_Opportuniteiten_Personen" FromRole="Opportuniteiten" ToRole="Personen" />
+        </EntityType>
+        <EntityType Name="Persoon">
+          <Key>
+            <PropertyRef Name="PersoonId" />
+          </Key>
+          <Property Name="PersoonId" Type="Int32" Nullable="false" />
+          <Property Name="KlantCode" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Aanspreking" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Familienaam" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Adres" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Postcode" Type="String" MaxLength="7" Unicode="true" FixedLength="false" />
+          <Property Name="Gemeente" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Land" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Telefoon" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Categorie_Code" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Bedrijf_Id" Type="Int32" />
+          <NavigationProperty Name="Bedrijf" Relationship="CRM.Persoon_Bedrijf" FromRole="Personen" ToRole="Bedrijven" />
+          <NavigationProperty Name="Categorie" Relationship="CRM.Persoon_Categorie" FromRole="Personen" ToRole="Categorieën" />
+          <NavigationProperty Name="Opportuniteiten" Relationship="CRM.FK_Opportuniteiten_Personen" FromRole="Personen" ToRole="Opportuniteiten" />
+          <NavigationProperty Name="Verkopen" Relationship="CRM.FK_Verkopen_Personen" FromRole="Personen" ToRole="Verkopen" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Omschrijving" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Eenheid" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="PrijsPerEenheid" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
+          <NavigationProperty Name="VerkoopRegels" Relationship="CRM.FK_VerkoopRegels_Producten" FromRole="Producten" ToRole="VerkoopRegels" />
+        </EntityType>
+        <EntityType Name="VerkoopRegel">
+          <Key>
+            <PropertyRef Name="Verkoop_Id" />
+            <PropertyRef Name="RegelNr" />
+          </Key>
+          <Property Name="Verkoop_Id" Type="Int32" Nullable="false" />
+          <Property Name="RegelNr" Type="Int32" Nullable="false" />
+          <Property Name="Product_Id" Type="Int32" Nullable="false" />
+          <Property Name="Aantal" Type="Int32" Nullable="false" />
+          <Property Name="Korting" Type="Decimal" Precision="4" Scale="2" />
+          <NavigationProperty Name="Product" Relationship="CRM.FK_VerkoopRegels_Producten" FromRole="VerkoopRegels" ToRole="Producten" />
+          <NavigationProperty Name="Verkoop" Relationship="CRM.FK_VerkoopRegels_Verkopen" FromRole="VerkoopRegels" ToRole="Verkopen" />
+        </EntityType>
+        <EntityType Name="Verkoop">
+          <Key>
+            <PropertyRef Name="VerkoopId" />
+          </Key>
+          <Property Name="VerkoopId" Type="Int32" Nullable="false" />
+          <Property Name="Persoon_Id" Type="Int32" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bevestigd" Type="Int32" Nullable="false" />
+          <Property Name="Betaald" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persoon" Relationship="CRM.FK_Verkopen_Personen" FromRole="Verkopen" ToRole="Personen" />
+          <NavigationProperty Name="VerkoopRegels" Relationship="CRM.FK_VerkoopRegels_Verkopen" FromRole="Verkopen" ToRole="VerkoopRegels" />
+        </EntityType>
+        <Association Name="Bedrijf_Categorie">
+          <End Role="Categorieën" Type="CRM.Categorie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bedrijven" Type="CRM.Bedrijf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorieën">
+              <PropertyRef Name="CategorieCode" />
+            </Principal>
+            <Dependent Role="Bedrijven">
+              <PropertyRef Name="Categorie_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Persoon_Bedrijf">
+          <End Role="Bedrijven" Type="CRM.Bedrijf" Multiplicity="0..1" />
+          <End Role="Personen" Type="CRM.Persoon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bedrijven">
+              <PropertyRef Name="BedrijfId" />
+            </Principal>
+            <Dependent Role="Personen">
+              <PropertyRef Name="Bedrijf_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Persoon_Categorie">
+          <End Role="Categorieën" Type="CRM.Categorie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Personen" Type="CRM.Persoon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorieën">
+              <PropertyRef Name="CategorieCode" />
+            </Principal>
+            <Dependent Role="Personen">
+              <PropertyRef Name="Categorie_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opportuniteiten_Personen">
+          <End Role="Personen" Type="CRM.Persoon" Multiplicity="1" />
+          <End Role="Opportuniteiten" Type="CRM.Opportuniteit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personen">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="Opportuniteiten">
+              <PropertyRef Name="OpportuniteitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Verkopen_Personen">
+          <End Role="Personen" Type="CRM.Persoon" Multiplicity="1" />
+          <End Role="Verkopen" Type="CRM.Verkoop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personen">
+              <PropertyRef Name="PersoonId" />
+            </Principal>
+            <Dependent Role="Verkopen">
+              <PropertyRef Name="Persoon_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VerkoopRegels_Producten">
+          <End Role="Producten" Type="CRM.Product" Multiplicity="1" />
+          <End Role="VerkoopRegels" Type="CRM.VerkoopRegel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producten">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="VerkoopRegels">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VerkoopRegels_Verkopen">
+          <End Role="Verkopen" Type="CRM.Verkoop" Multiplicity="1" />
+          <End Role="VerkoopRegels" Type="CRM.VerkoopRegel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Verkopen">
+              <PropertyRef Name="VerkoopId" />
+            </Principal>
+            <Dependent Role="VerkoopRegels">
+              <PropertyRef Name="Verkoop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CRMStoreContainer" CdmEntityContainer="CRMEntities">
+          <EntitySetMapping Name="Bedrijven">
+            <EntityTypeMapping TypeName="CRM.Bedrijf">
+              <MappingFragment StoreEntitySet="Bedrijven">
+                <ScalarProperty Name="BedrijfId" ColumnName="BedrijfId" />
+                <ScalarProperty Name="KlantCode" ColumnName="KlantCode" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Categorie_Code" ColumnName="Categorie_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorieën">
+            <EntityTypeMapping TypeName="CRM.Categorie">
+              <MappingFragment StoreEntitySet="Categorieën">
+                <ScalarProperty Name="CategorieCode" ColumnName="CategorieCode" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Opportuniteiten">
+            <EntityTypeMapping TypeName="CRM.Opportuniteit">
+              <MappingFragment StoreEntitySet="Opportuniteiten">
+                <ScalarProperty Name="OpportuniteitId" ColumnName="OpportuniteitId" />
+                <ScalarProperty Name="Persoon_Id" ColumnName="Persoon_Id" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Einddatum" ColumnName="Einddatum" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personen">
+            <EntityTypeMapping TypeName="CRM.Persoon">
+              <MappingFragment StoreEntitySet="Personen">
+                <ScalarProperty Name="PersoonId" ColumnName="PersoonId" />
+                <ScalarProperty Name="KlantCode" ColumnName="KlantCode" />
+                <ScalarProperty Name="Aanspreking" ColumnName="Aanspreking" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="Familienaam" ColumnName="Familienaam" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Categorie_Code" ColumnName="Categorie_Code" />
+                <ScalarProperty Name="Bedrijf_Id" ColumnName="Bedrijf_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producten">
+            <EntityTypeMapping TypeName="CRM.Product">
+              <MappingFragment StoreEntitySet="Producten">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+                <ScalarProperty Name="Eenheid" ColumnName="Eenheid" />
+                <ScalarProperty Name="PrijsPerEenheid" ColumnName="PrijsPerEenheid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VerkoopRegels">
+            <EntityTypeMapping TypeName="CRM.VerkoopRegel">
+              <MappingFragment StoreEntitySet="VerkoopRegels">
+                <ScalarProperty Name="Verkoop_Id" ColumnName="Verkoop_Id" />
+                <ScalarProperty Name="RegelNr" ColumnName="RegelNr" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Aantal" ColumnName="Aantal" />
+                <ScalarProperty Name="Korting" ColumnName="Korting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Verkopen">
+            <EntityTypeMapping TypeName="CRM.Verkoop">
+              <MappingFragment StoreEntitySet="Verkopen">
+                <ScalarProperty Name="VerkoopId" ColumnName="VerkoopId" />
+                <ScalarProperty Name="Persoon_Id" ColumnName="Persoon_Id" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Bevestigd" ColumnName="Bevestigd" />
+                <ScalarProperty Name="Betaald" ColumnName="Betaald" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
